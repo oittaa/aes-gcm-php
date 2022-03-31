@@ -12,7 +12,7 @@ use AESGCM\AESGCM;
  */
 final class AESGCMTest extends TestCase
 {
-    public function testCanEncryptAndDecrypt()
+    public function testCanEncryptAndDecrypt(): void
     {
         $password = 'password';
         for ($i = 0; $i < 100000; $i = 1 + $i * 2) {
@@ -25,19 +25,25 @@ final class AESGCMTest extends TestCase
         }
     }
 
-    public function testWrongPassword()
+    public function testWrongPassword(): void
     {
         $enc = AESGCM::encrypt('abcd1234', 'xyzxyz');
         $this->assertFalse(AESGCM::decrypt($enc, 'ayzxyz'));
     }
 
-    public function testEmptyPassword()
+    public function testEmptyPassword(): void
     {
         $enc = AESGCM::encrypt('abcd1234', '');
         $this->assertEquals('abcd1234', AESGCM::decrypt($enc, ''));
     }
 
-    public function testCanEncryptBinaryData()
+    public function testNullPassword(): void
+    {
+        $this->expectException(\TypeError::class);
+        AESGCM::encrypt('abcd1234', null);
+    }
+
+    public function testCanEncryptBinaryData(): void
     {
         $password = 'password';
         $data = '';
@@ -49,7 +55,7 @@ final class AESGCMTest extends TestCase
         $this->assertEquals($data, $dec);
     }
 
-    public function testCanEncryptWithBinaryPassword()
+    public function testCanEncryptWithBinaryPassword(): void
     {
         $data = 'data';
         $password = '';
