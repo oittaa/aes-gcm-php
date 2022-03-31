@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace UUID\Test;
+namespace AESGCM\Test;
 
 use PHPUnit\Framework\TestCase;
 use AESGCM\AESGCM;
 
 /**
- * @covers \UUID\UUID
+ * @covers \AESGCM\AESGCM
  */
 final class AESGCMTest extends TestCase
 {
