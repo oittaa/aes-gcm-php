@@ -15,7 +15,7 @@ final class AESGCM
         $iv = substr($data, 32, 12);
         $tag = substr($data, 44, 16);
         $data = substr($data, 60);
-        $secret = hash_pbkdf2('sha256', hash('sha256', $password, true), $salt, 100000, 32, true);
+        $secret = hash_pbkdf2('sha256', $password, $salt, 100000, 32, true);
         return openssl_decrypt(
             $data,
             'aes-256-gcm',
@@ -31,7 +31,7 @@ final class AESGCM
     {
         $salt = random_bytes(32);
         $iv = random_bytes(12);
-        $secret = hash_pbkdf2('sha256', hash('sha256', $password, true), $salt, 100000, 32, true);
+        $secret = hash_pbkdf2('sha256', $password, $salt, 100000, 32, true);
         $encrypted = openssl_encrypt(
             $data,
             'aes-256-gcm',
