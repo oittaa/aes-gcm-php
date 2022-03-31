@@ -1,0 +1,22 @@
+{
+    "name": "oittaa/aes-gcm",
+    "type": "library",
+    "description": "AES GCM (Galois Counter Mode) made simple.",
+    "keywords": [
+        "AES-GCM",
+        "AES",
+        "GCM",
+        "authenticated",
+        "encryption"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": "^8.0",
+        "ext-openssl": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "AESGCM\\": "src/"
+        }
+    }
+}
