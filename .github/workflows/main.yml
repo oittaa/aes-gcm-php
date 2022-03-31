@@ -36,7 +36,7 @@ jobs:
         php-version: ${{ matrix.php-versions }}
         tools: composer, phpunit
     - name: Install dependencies
-      run: composer install --no-dev
+      run: composer install
     - name: PHPUnit
       run: phpunit --coverage-clover coverage.xml
     - name: Upload coverage to Codecov
