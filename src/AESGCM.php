@@ -14,7 +14,7 @@ final class AESGCM
         return [$key, $iv];
     }
 
-    public static function decrypt(string $data, string $password, bool $raw = false): string|false
+    public static function decrypt(string $data, string $password, bool $raw = false, string $aad = ''): string|false
     {
         if (!$raw) {
             $data = base64_decode($data, true);
@@ -33,11 +33,11 @@ final class AESGCM
             OPENSSL_RAW_DATA,
             $iv,
             $tag,
-            'aes-256-gcm-php'
+            'aes-256-gcm-php' . $aad
         );
     }
 
-    public static function encrypt(string $data, string $password, bool $raw = false): string
+    public static function encrypt(string $data, string $password, bool $raw = false, string $aad = ''): string
     {
         $salt = random_bytes(16);
         [$key, $iv] = self::keyAndIV($password, $salt);
@@ -48,7 +48,7 @@ final class AESGCM
             OPENSSL_RAW_DATA,
             $iv,
             $tag,
-            'aes-256-gcm-php',
+            'aes-256-gcm-php' . $aad,
             16
         );
         $result = $salt . $tag . $encrypted;
