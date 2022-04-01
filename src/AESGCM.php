@@ -11,6 +11,9 @@ final class AESGCM
         if (!$raw) {
             $data = base64_decode($data, true);
         }
+        if ($data === false || strlen($data) < 60) {
+            return false;
+        }
         $salt = substr($data, 0, 32);
         $iv = substr($data, 32, 12);
         $tag = substr($data, 44, 16);
