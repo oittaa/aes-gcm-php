@@ -78,9 +78,9 @@ final class AESGCMTest extends TestCase
         $data = 'abcd1234';
         $password = 'xyzxyz';
         $enc = AESGCM::encrypt($data, $password);
-        $this->assertFalse(AESGCM::decrypt($enc, 'xyzxyz', aad: 'aad'));
-        $enc = AESGCM::encrypt($data, 'xyzxyz', aad: 'aad');
-        $this->assertFalse(AESGCM::decrypt($enc, 'xyzxyz'));
-        $this->assertEquals($data, AESGCM::decrypt($enc, 'xyzxyz', aad: 'aad'));
+        $this->assertFalse(AESGCM::decrypt($enc, $password, aad: 'aad'));
+        $enc = AESGCM::encrypt($data, $password, aad: 'aad');
+        $this->assertFalse(AESGCM::decrypt($enc, $password));
+        $this->assertEquals($data, AESGCM::decrypt($enc, $password, aad: 'aad'));
     }
 }
