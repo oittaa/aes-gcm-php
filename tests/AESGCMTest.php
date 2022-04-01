@@ -43,6 +43,12 @@ final class AESGCMTest extends TestCase
         AESGCM::encrypt('abcd1234', null);
     }
 
+    public function testDecryptInvalidData(): void
+    {
+        $this->assertFalse(AESGCM::decrypt('abc123zzz', 'password'));
+        $this->assertFalse(AESGCM::decrypt('abc123zzz', 'password', true));
+    }
+
     public function testCanEncryptBinaryData(): void
     {
         $password = 'password';
