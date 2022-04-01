@@ -22,6 +22,10 @@ var_dump($encrypted);
 $decrypted = AESGCM::decrypt($encrypted, 'my secret password');
 var_dump($decrypted);
 
+// False returned
+$decrypted = AESGCM::decrypt($encrypted, 'WRONG password');
+var_dump($decrypted);
+
 // Raw binary data returned
 $encrypted = AESGCM::encrypt('my data', 'my secret password', true);
 var_dump($encrypted);
